@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>IFE JavaScript Task 01</title>
+  </head>
+<body>
+<script type="text/javascript">
+
+//隐藏数据
+/*var db = (function() {
+// 创建一个隐藏的object, 这个object持有一些数据
+// 从外部是不能访问这个object的
+var data = {};
+// 创建一个函数, 这个函数提供一些访问data的数据的方法
+return function(key, val) {
+    if (val === undefined) { return data[key] } // get
+    else { return data[key] = val } // set
+    }
+// 我们可以调用这个匿名方法
+// 返回这个内部函数，它是一个闭包
+})(); 
+db(0,'zxc');
+db(1,"asds");
+console.log(db(1));
+console.log(db(2,"yui"));
+
+*/
+
+
+
+
+
+
+
+//输出12345正文
+
+
+
+
+
+//setTimeout() 方法用于在指定的毫秒数后调用函数或计算表达式。
+
+//1
+//输出 01234   0s；
+/*for (var i = 0; i < 5; i++) {
+  console.log(i);
+}*/
+
+
+
+//2
+//输出 01234   0s；
+//************setTimeout的延后执行
+/*for(var i=0;i<5;i++){
+  setTimeout(console.log(i),i*1000);
+}
+
+
+
+//3
+//输出 5 (1s) 5 (1s) 5 (1s) 5 (1s) 5;
+//*****************函数生命周期
+ /*for (var i = 0; i<5; i++) {
+  setTimeout(function(){
+    console.log(i);
+  },i*1000);
+}*/
+
+
+//4
+//输出 01234   0s；
+//****************setTimeout(undefined,Time);
+/*for (var i = 0; i < 5; i++) {
+  setTimeout((function(i) {
+    console.log(i);
+  })(i), i * 1000);
+}*/
+
+
+/*var i =1;
+console.log((function(i) {
+    console.log(i++);
+  })(i));*/
+
+
+
+//5
+//输出 5 (1s) 5 (1s) 5 (1s) 5 (1s) 5;
+//****************传入无效
+/*for (var i = 0; i < 5; i++) {
+    (function(){setTimeout(function() {
+      console.log(i);
+    }, i * 1000);
+  })(i);
+}*/
+
+
+
+//6
+//输出0 (1s)1 (1s)2(1s)3(1s)4
+//**************传入成功
+ /* for (var i = 0; i < 5; i++) {
+  (function(i) {setTimeout(function() {
+      console.log(i);
+    }, i * 1000);
+  })(i);
+}*/
+
+(function(接受){})(传入);
+
+
+
+(function(){})(传入) =function(){}
+
+
+
+
+
+
+
+
+
+(function() {
+  /*    
+  在注释下方写下代码
+  给按钮button绑定一个点击事件
+  在事件处理函数中
+  获取aqi-input输入的值，并显示在aqi-display中
+  */
+
+})();
+</script>
+</body>
