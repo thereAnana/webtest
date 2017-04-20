@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title>横向柱形图</title>
+		<script type="text/javascript" src="jquery.min.js"></script>
+		<style type="text/css">
+.content-box{
+	width: 100%;
+}
+.charts-con>table{
+	width: 96%;
+	margin: 0 2%;
+	height: 100%;
+	min-height: 376px;
+}
+.charts-con td,.charts-con th{
+	text-align: center;
+	line-height: 1em;
+}
+.charts-con tbody>tr>td{
+	padding: 0.4em  0;
+	font-size: 1em;
+}
+.charts-con thead>tr>th{
+	padding: 0.06em  0;
+	font-size: 0.8em;
+}
+.charts-con tbody>tr>td:nth-child(2)>div:first-child{
+	width: 5em;
+	height: 1.3em;
+	line-height: 1.1em;
+	font-size: 0.8em;
+	float: left;
+	box-sizing: border-box;
+	padding:0.1em  0.3em;
+	color: #E38D13;
+	background: #FFFF00;
+	text-align: left;
+}
+.charts-con tbody>tr>#higher>div{
+	color: #fff;
+	background: orangered;
+}
+.charts-con tbody>tr>#lower>div{
+	color: #fff;
+	background:#F0AD4E;
+}
+.split-line{
+	border-right: 0.2em solid #FFFF00;
+	position: absolute!important;
+	top: 0px;
+	width: 0;
+}
+		</style>
+		<script type="text/javascript">
+$(document).ready(){
+/*
+ * by walnutbear  2017/4/20
+ * 需引入jQury
+ * */
+
+	$('.charts-con td,.charts-con th').height(($('.content-box').height()/17-1)+'px');
+	//$('.search-keywords-box>input').width(($('body').width()-$('.search-keywords-box>.search-icon').width()*1.6)+'px');
+	/*-----------------------------加载数据---------------------------------*/
+	var dataCh =[{
+	'areacode':'5000000',
+	'areaname':'平均',
+	'percent':'12.6',
+	'hisyear':'5.78',
+	'lastyear':'15.47'
+},{
+	'areacode':'5000000',
+	'areaname':'apple',
+	'percent':'12.6',
+	'hisyear':'5.78',
+	'lastyear':'15.47'
+},{
+	'areacode':'5000000',
+	'areaname':'orange',
+	'percent':'12.6',
+	'hisyear':'5.78',
+	'lastyear':'15.47'
+},{
+	'areacode':'5000000',
+	'areaname':'pear',
+	'percent':'30',
+	'hisyear':'5.78',
+	'lastyear':'15.47'
+},{
+	'areacode':'5000000',
+	'areaname':'melon',
+	'percent':'12.6',
+	'hisyear':'5.78',
+	'lastyear':'15.47'
+},{
+	'areacode':'5000000',
+	'areaname':'banana',
+	'percent':'14',
+	'hisyear':'5.78',
+	'lastyear':'15.47'
+},{
+	'areacode':'5000000',
+	'areaname':'petch',
+	'percent':'21',
+	'hisyear':'5.78',
+	'lastyear':'15.47'
+},{
+	'areacode':'5000000',
+	'areaname':'apple',
+	'percent':'12.6',
+	'hisyear':'5.78',
+	'lastyear':'15.47'
+},{
+	'areacode':'5000000',
+	'areaname':'apple',
+	'percent':'12.6',
+	'hisyear':'5.78',
+	'lastyear':'15.47'
+},{
+	'areacode':'5000000',
+	'areaname':'apple',
+	'percent':'12.6',
+	'hisyear':'5.78',
+	'lastyear':'15.47'
+},{
+	'areacode':'5000000',
+	'areaname':'apple',
+	'percent':'12.6',
+	'hisyear':'5.78',
+	'lastyear':'15.47'
+},{
+	'areacode':'5000000',
+	'areaname':'apple',
+	'percent':'12.6',
+	'hisyear':'5.78',
+	'lastyear':'15.47'
+},{
+	'areacode':'5000000',
+	'areaname':'apple',
+	'percent':'6',
+	'hisyear':'5.78',
+	'lastyear':'15.47'
+},{
+	'areacode':'5000000',
+	'areaname':'apple',
+	'percent':'8',
+	'hisyear':'5.78',
+	'lastyear':'15.47'
+}]
+	//添加数据
+	for(var i =0;i<dataCh.length;i++){
+		$('.charts-con>table>tbody').append("<tr><td >"+dataCh[i].areaname+"</td><td id='"+getClassname(i)+"'><div >"+dataCh[i].percent+"</div></td><td>"+dataCh[i].hisyear+"%</td><td>"+dataCh[i].lastyear+"%</td></tr>");
+		if(i !=0)$('.charts-con>table>tbody>tr').eq(i).find("td").eq(1).find("div").eq(0).width((dataCh[i].percent/dataCh[0].percent)*$('.charts-con>table>tbody>tr>td').eq(1).find("div").eq(0).width() +'px');
+	}
+	$('#divhigher').trigger('create');
+	//样式控制
+	$('.split-line').height($('.charts-con>table>tbody').height());	
+	$('.split-line').css("top",$('.sub-title').height()+$('.pic-box').height()+$('.title-nav').height()+$('.charts-con>table>thead').height()+'px');	
+	$('.split-line').css("left",$('body').width()*0.02+$('.charts-con>table>tbody>tr>td').eq(0).width()+($('.charts-con>table>tbody>tr>td').eq(1).find("div").eq(0).width()/5)*5.6+'px');
+	$('.content-box').height($('.charts-con>table').height());
+	$('.map-tag-box').css('top','-'+$('.content-box').height()+"px");
+	function getClassname(IND){	
+		if(IND ==0){ return "";}
+		console.log(dataCh[IND].percent+'L'+dataCh[0].percent);
+		return parseFloat(dataCh[IND].percent) > parseFloat(dataCh[0].percent)?'higher':'lower';
+	}
+}
+		</script>
+	</head>
+	<body>
+		<div  class="content-box">
+		<div class="chart-box tab-pane" >
+			<div class="charts-con">
+				<table>
+					<thead>
+						<tr>
+							<th></th>
+							<th></th>
+							<th></th>
+							<th>（单位：m）</th>
+						</tr>
+						<tr>
+							<th></th>
+							<th></th>
+							<th>与历年同比</th>
+							<th>与去年同比</th>
+						</tr>
+					</thead>
+					<tbody>
+					</tbody>
+				</table>
+				<div class='split-line'></div>
+			</div>
+		</div>
+		</div>
+	</body>
+</html>
