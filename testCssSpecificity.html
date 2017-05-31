@@ -1,0 +1,79 @@
+<<!DOCTYPE html>
+<html>
+<head>
+	<title>TestCssSpecificity</title>
+	<style type="text/css">
+div >div>div>div>div>div>div>div>div>div>div{
+	background:#00f;
+	width: 100%;
+	height: 30%;
+}
+.test{
+	background:#000;
+}
+#test{
+	background:#000;
+}
+.div1>.div2>.div3>.div4>.div5>.div6>.div7>.div8>.div9>.div10>.div11{
+	background:#00f;
+	width: 100%;
+	height: 30%;
+}
+	</style>
+</head>
+<body>
+<!--
+今天在群里讨论css权重的问题，很多人搜游类似于标签=1，class=10，id=100，写在标签中间的属性=1000这样的的属性，后来用这个实力测了一下，并不是用权重计算这么复杂，不是十进制，只是简单的层级关系，
+！important-标签属性-id-class-标签 
+这样层级关系ps 这个网站就是说明这方面关系的，小漫画特别可爱http://cssspecificity.com/
+-->
+<div >
+	<div>
+		<div>
+			<div>
+				<div>
+					<div>6
+						<div>
+							7<div>
+								8<div>
+									9<div>
+										10
+										<div class="test">
+											11
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="div1">
+	<div class="div2">
+		<div class="div3">
+			<div class="div4">
+				<div class="div5">
+					<div class="div6">6
+						<div class="div7">
+							7<div class="div8">
+								8<div class="div9">
+									9<div class="div10">
+										10
+										<div class="div11" id="test">
+											11
+										</div>
+									</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+</body>
+</html>
